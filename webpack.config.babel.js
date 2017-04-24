@@ -41,7 +41,7 @@ const base = {
     ]
   },
   resolve: {
-    root: path.resolve('./app')
+    modules: ['./app', './node_modules']
   }
 }
 
@@ -51,7 +51,6 @@ const developmentConfig = {
     contentBase: PATHS.build,
     hot: true,
     inline: true,
-    progress: true,
   },
   plugins: [HTMLWebpackPluginConfig, new webpack.HotModuleReplacementPlugin()]
 }
