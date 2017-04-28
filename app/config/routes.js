@@ -1,7 +1,16 @@
 import React from 'react'
-import { Router, Route, IndexRoute } from 'react-router'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-export default function getRoutes(checkAuth, history) {
+import { MainContainer, NewPostContainer } from 'containers'
+import { Home } from 'components'
+
+export default function routes () {
   return (
+    <Router>
+      <MainContainer>
+        <Route path='/newPost' component={NewPostContainer} />
+        <Route exact path='/' component={Home} />
+      </MainContainer>
+    </Router>
   )
 }

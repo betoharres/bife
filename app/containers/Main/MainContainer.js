@@ -7,7 +7,9 @@ class Main extends Component {
   render () {
     return (
       <MuiThemeProvider>
-        <Home />
+        <div id="appContainer">
+          {this.props.children}
+        </div>
       </MuiThemeProvider>
     )
   }

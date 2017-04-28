@@ -1,4 +1,18 @@
-import Firebase from 'firebase'
+import firebase from 'firebase'
 
-const firebaseUrl = 'https://bife-b1f44.firebaseio.com/'
-export const ref = new Firebase(firebaseUrl)
+firebase.initializeApp({
+  apiKey: "AIzaSyBso-9fGaoDC35lwwe_rAPZQ43c8xXy9TA",
+  authDomain: "bife-29fca.firebaseapp.com",
+  databaseURL: "https://bife-29fca.firebaseio.com",
+  projectId: "bife-29fca",
+  storageBucket: "bife-29fca.appspot.com",
+  messagingSenderId: "270100098769"
+})
+
+const ref = firebase.database().ref()
+const firebaseAuth = firebase.auth()
+
+export {
+  ref,
+  firebaseAuth,
+}

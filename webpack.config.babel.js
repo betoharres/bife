@@ -31,7 +31,8 @@ const base = {
   ],
   output: {
     path: PATHS.build,
-    filename: 'index_bundle.js'
+    filename: 'index_bundle.js',
+    publicPath: '/'
   },
   module: {
     loaders: [
@@ -51,6 +52,7 @@ const developmentConfig = {
     contentBase: PATHS.build,
     hot: true,
     inline: true,
+    historyApiFallback: true,
   },
   plugins: [HTMLWebpackPluginConfig, new webpack.HotModuleReplacementPlugin()]
 }
