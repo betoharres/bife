@@ -15,11 +15,6 @@ import { reducer as formReducer } from 'redux-form/immutable'
 
 import { authUser } from 'auth'
 
-async function checkEditor () {
-  const { editor } = await authUser()
-  return editor
-}
-
 const store = createStore(
   combineReducers({...reducers, form: formReducer}),
   compose(
@@ -30,6 +25,6 @@ const store = createStore(
 
 ReacDOM.render(
   <Provider store={store}>
-    {routes()}
+    {routes(authUser)}
   </Provider>,
   document.getElementById('app'))
