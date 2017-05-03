@@ -13,8 +13,6 @@ import thunk from 'redux-thunk'
 import * as reducers from './redux/modules'
 import { reducer as formReducer } from 'redux-form/immutable'
 
-import { authUser } from 'auth'
-
 const store = createStore(
   combineReducers({...reducers, form: formReducer}),
   compose(
@@ -25,6 +23,6 @@ const store = createStore(
 
 ReacDOM.render(
   <Provider store={store}>
-    {routes(authUser)}
+    {routes()}
   </Provider>,
   document.getElementById('app'))

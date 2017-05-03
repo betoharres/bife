@@ -9,14 +9,14 @@ export async function fetchUser (uid) {
 export async function registerUser () {
   const { uid } = await firebaseAuth.signInAnonymously()
 
-  const user = {editor: false, createdAt: Date.now()}
+  const user = {uid, isEditor: false, createdAt: Date.now()}
   ref.child(`users/${uid}`).set(user)
   cookies.set('uid', uid)
   cookies.set('createdAt', Date.now())
   return {[uid]: user}
 }
 
-export async function authUser () {
+export async function authenticate () {
   const uid = cookies.get('uid')
   if (uid === null) {
     return await registerUser()

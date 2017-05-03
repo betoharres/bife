@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import { Home } from 'components'
+import { connect } from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
+import { authenticateUser } from 'redux/modules/user'
+
 class Main extends Component {
+
+  async componentDidMount () {
+    await this.props.dispatch(authenticateUser())
+  }
 
   render () {
     return (
@@ -15,4 +22,4 @@ class Main extends Component {
   }
 }
 
-export default Main
+export default connect()(Main)

@@ -1,4 +1,5 @@
 import { Map } from 'immutable'
+import { authenticate } from 'auth'
 
 export const AUTH_USER = 'AUTH_USER'
 export const AUTH_USER_SUCCESS = 'AUTH_USER_SUCCESS'
@@ -24,9 +25,22 @@ export function authUserFailure (error) {
   }
 }
 
+export function authenticateUser () {
+  return async function (dispatch) {
+    dispatch(authUser())
+    try {
+      const user = await authenticate()
+      dispatch(authUserSuccess(user))
+    } catch (e) {
+      console.log(e)
+      dispatch(authUserFailure(e))
+    }
+  }
+}
+
 const initialState = Map({
   uid: null,
-  editor: false,
+  isEditor: false,
   createdAt: null,
   isLoading: false,
 })
@@ -37,11 +51,11 @@ export default function user (state = initialState, action) {
     case AUTH_USER :
       return state.merge({isLoading: false})
 
-    case AUTH_USER :
+    case AUTH_USER_SUCCESS :
       return state.merge({
-        uid: action.uid,
-        editor: action.editor,
-        createdAt: action.createdAt,
+        uid: action.user.uid,
+        isEditor: action.user.isEditor,
+        createdAt: action.user.createdAt,
         isLoading: false,
       })
 
