@@ -4,7 +4,7 @@ import ReacDOM from 'react-dom'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin()
 
-import App from './config/routes'
+import App from './App'
 
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { Provider } from 'react-redux'

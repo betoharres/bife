@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 
-import { MainContainer, NewPostContainer } from 'containers'
+import { NewPostContainer } from 'containers'
 import { Home } from 'components'
+import PrivateRoutes from './config/PrivateRoutes'
 
 import { authenticateUser } from 'redux/modules/user'
 import { connect } from 'react-redux'
 
-import PrivateRoutes from './PrivateRoutes'
 import * as styles from './styles.css'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 class App extends Component {
 
@@ -18,8 +19,8 @@ class App extends Component {
 
   render () {
     return (
-      <Router>
-        <MainContainer>
+      <MuiThemeProvider>
+        <Router>
           <Switch>
             <Route exact path='/' component={Home} />
             <PrivateRoutes>
@@ -29,18 +30,10 @@ class App extends Component {
               </Switch>
             </PrivateRoutes>
           </Switch>
-        </MainContainer>
-      </Router>
+        </Router>
+      </MuiThemeProvider>
     )
   }
 }
 
-function mapStateToProps ({user}) {
-  return {
-    isAuthenticating: user.get('isLoading'),
-    isAuthenticated: user.get('isAuthenticated'),
-    isEditor: user.get('isEditor'),
-  }
-}
-
-export default connect(mapStateToProps)(App)
+export default connect()(App)
