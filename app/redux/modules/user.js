@@ -42,6 +42,7 @@ const initialState = Map({
   uid: null,
   isEditor: false,
   createdAt: null,
+  isAuthenticated: false,
   isLoading: false,
 })
 
@@ -49,18 +50,19 @@ export default function user (state = initialState, action) {
   switch (action.type) {
 
     case AUTH_USER :
-      return state.merge({isLoading: false})
+      return state.merge({isLoading: true})
 
     case AUTH_USER_SUCCESS :
       return state.merge({
         uid: action.user.uid,
         isEditor: action.user.isEditor,
         createdAt: action.user.createdAt,
+        isAuthenticated: true,
         isLoading: false,
       })
 
     case AUTH_USER_FAILURE :
-      return state.merge({error: action.error})
+      return state.merge({isLoading: false, isAuthenticated: false, error: action.error})
 
     default :
       return state
