@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Loading } from 'components'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 
 class PrivateRoutes extends Component {
 
@@ -9,7 +9,7 @@ class PrivateRoutes extends Component {
     if (this.props.isEditor && this.props.isAuthenticated){
       return this.props.children
     } else if (this.props.isAuthenticating) {
-      return <Route component={Loading}/>
+      return <Route component={Loading} />
     } else {
       return <Route component={() => <div>Pagina nao encontrada</div>}/>
     }
