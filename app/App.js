@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import PrivateRoute from './config/PrivateRoute'
 
 import { NewPostContainer } from 'containers'
 import { Home } from 'components'
-import PrivateRoutes from './config/PrivateRoutes'
 
 import { authenticateUser } from 'redux/modules/user'
 import { connect } from 'react-redux'
 
-import * as styles from './styles.css'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import * as styles from './styles.css'
 
 class App extends Component {
 
@@ -23,12 +23,10 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path='/' component={Home} />
-            <PrivateRoutes>
-              <Switch>
-                <Route path='/new-post' component={NewPostContainer} />
-                <Route component={() => <div>Pagina nao encontrada</div>}/>
-              </Switch>
-            </PrivateRoutes>
+            <PrivateRoute
+              allow={this.props.isEditor && this.props.isAuthenticated}
+              path='/new-post' component={NewPostContainer} />
+            <Route component={() => <div>Pagina nao encontrada</div>}/>
           </Switch>
         </Router>
       </MuiThemeProvider>
@@ -36,4 +34,11 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+function mapStateToProps ({user}) {
+  return {
+    isEditor: user.get('isEditor'),
+    isAuthenticated: user.get('isAuthenticated'),
+  }
+}
+
+export default connect(mapStateToProps)(App)
