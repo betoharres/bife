@@ -5,7 +5,7 @@ export default function ButtonForm (props) {
 
   return (
     <RaisedButton type='submit' label={props.label} fullWidth={props.fullWidth}
-      disabled={props.disabled} />
+      primary={true} disabled={props.disabled} />
   )
 
 }
