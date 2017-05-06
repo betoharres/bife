@@ -6,19 +6,22 @@ import Paper from 'material-ui/Paper'
 import { newPostContainer, fieldContainer, paperContainer } from './styles.css'
 
 const validate = values => {
-  const postId = values.keySeq().first()
   const errors = {}
+  const postId = values.keySeq().first()
 
-  if (!values.getIn([postId, 'title'])) {
-    errors.title = 'Campo obrigatorio'
-  } else if (values.getIn([postId, 'title']).length > 50) {
-    errors.title = 'Deve conter menos de 50 caracteres'
-  } else if (/\W/g.test(values.getIn([postId, 'title']))) {
-    errors.title = 'Deve conter somente letras e numeros'
-  }
+  if (postId) {
+    errors[postId] = {}
+    if (!values.getIn([postId, 'title'])) {
+      errors[postId].title = 'Campo obrigatorio'
+    } else if (values.getIn([postId, 'title']).length > 50) {
+      errors[postId].title = 'Deve conter menos de 50 caracteres'
+    } else if (/\W/g.test(values.getIn([postId, 'title']))) {
+      errors.title = 'Deve conter somente letras e numeros'
+    }
 
-  if (!values.getIn([postId, 'body'])) {
-    errors.body = 'Campo obrigatorio'
+    if (!values.getIn([postId, 'body'])) {
+      errors[postId].body = 'Campo obrigatorio'
+    }
   }
 
   return errors
