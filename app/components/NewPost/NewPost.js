@@ -16,7 +16,7 @@ const validate = values => {
     } else if (values.getIn([postId, 'title']).length > 50) {
       errors[postId].title = 'Deve conter menos de 50 caracteres'
     } else if (/\W/g.test(values.getIn([postId, 'title']))) {
-      errors.title = 'Deve conter somente letras e numeros'
+      errors[postId].title = 'Deve conter somente letras e numeros'
     }
 
     if (!values.getIn([postId, 'body'])) {
