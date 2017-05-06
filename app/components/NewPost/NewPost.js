@@ -34,6 +34,7 @@ function NewPost (props) {
       <Paper className={paperContainer}>
         <form onSubmit={props.handleSubmit}>
           <FormSection name={props.postId}>
+
             <div className={fieldContainer}>
               <Field name='title' label='Titulo'
                 fullWidth={true} component={TextForm} />
@@ -48,6 +49,7 @@ function NewPost (props) {
               <ButtonForm label={'Enviar'} fullWidth={true}
                 disabled={props.pristine || props.submitting} />
             </div>
+
           </FormSection>
         </form>
       </Paper>
@@ -56,4 +58,4 @@ function NewPost (props) {
 
 }
 
-export default reduxForm({form: 'NewPost', validate} )(NewPost)
+export default reduxForm({form: 'NewPost', validate})(NewPost)

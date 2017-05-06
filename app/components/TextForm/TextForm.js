@@ -8,9 +8,10 @@ export default function TextForm (props) {
       fullWidth={props.fullWidth}
       multiLine={props.multiLine}
       floatingLabelText={props.label}
-      errorText={props.meta.touched && props.meta.error}
+      errorText={props.meta.touched && props.meta.error ? props.meta.error : null}
       onChange={(v) => props.input.onChange(v)}
-      value={props.input.value} />
+      value={props.input.value}
+      {...props.input} />
   )
 
 }

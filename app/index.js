@@ -1,9 +1,6 @@
 import React from 'react'
 import ReacDOM from 'react-dom'
 
-import injectTapEventPlugin from 'react-tap-event-plugin'
-injectTapEventPlugin()
-
 import App from './App'
 
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
@@ -12,6 +9,9 @@ import thunk from 'redux-thunk'
 
 import * as reducers from './redux/modules'
 import { reducer as formReducer } from 'redux-form/immutable'
+
+import injectTapEventPlugin from 'react-tap-event-plugin'
+injectTapEventPlugin()
 
 const store = createStore(
   combineReducers({...reducers, form: formReducer}),
