@@ -1,0 +1,16 @@
+.container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.postContainer {
+  margin: 20px;
+  padding: 10px;
+  max-width: 500px;
+  width: 300px;
+}

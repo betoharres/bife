@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
 import Dialog from 'material-ui/Dialog'
 
 export default function Modal ({isOpen, handleClose, component}) {

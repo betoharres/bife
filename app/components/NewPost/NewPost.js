@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
 import { reduxForm, Field, FormSection } from 'redux-form/immutable'
 import { TextForm, ButtonForm } from 'components'
 import Paper from 'material-ui/Paper'
@@ -19,8 +19,8 @@ const validate = values => {
       errors[postId].title = 'Deve conter somente letras e numeros'
     }
 
-    if (!values.getIn([postId, 'body'])) {
-      errors[postId].body = 'Campo obrigatorio'
+    if (!values.getIn([postId, 'content'])) {
+      errors[postId].content = 'Campo obrigatorio'
     }
   }
 
@@ -41,7 +41,7 @@ function NewPost (props) {
             </div>
 
             <div className={fieldContainer}>
-              <Field name='body' label='Conteudo' multiLine={true}
+              <Field name='content' label='Conteudo' multiLine={true}
                 fullWidth={true} component={TextForm} />
             </div>
 
