@@ -9,8 +9,8 @@ export default function Home (props) {
 
   return (
     <div className={styles.container}>
-      {posts.map( post => (
-        <Paper className={styles.postContainer} zDepth={1}>
+      {posts.map((post, index) => (
+        <Paper key={index} className={styles.postContainer} zDepth={1}>
           <h1>{post.title}</h1>
           <span>{post.content}</span>
         </Paper>

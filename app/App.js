@@ -25,6 +25,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <PrivateRoute
               allow={this.props.isEditor && this.props.isAuthenticated}
+              isLoading={this.props.isAuthenticating}
               path='/new-post' component={NewPostContainer} />
             <Route component={() => <div>Pagina nao encontrada</div>}/>
           </Switch>
@@ -38,6 +39,7 @@ function mapStateToProps ({user}) {
   return {
     isEditor: user.get('isEditor'),
     isAuthenticated: user.get('isAuthenticated'),
+    isAuthenticating: user.get('isLoading'),
   }
 }
 

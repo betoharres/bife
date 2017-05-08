@@ -12,7 +12,7 @@ export async function registerUser () {
   const user = {uid, isEditor: false, createdAt: Date.now()}
   ref.child(`users/${uid}`).set(user)
   cookies.set('uid', uid)
-  cookies.set('createdAt', Date.now())
+  cookies.set('createdAt', Date.now().toString())
   return {[uid]: user}
 }
 

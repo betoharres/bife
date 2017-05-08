@@ -32,7 +32,6 @@ export function authenticateUser () {
       const user = await authenticate()
       dispatch(authUserSuccess(user))
     } catch (e) {
-      console.log(e)
       dispatch(authUserFailure(e))
     }
   }
