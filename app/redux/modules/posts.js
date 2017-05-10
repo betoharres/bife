@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable'
-import { persistPost } from 'api'
+import { persistPost, getPosts } from 'api'
 
 export const LOADING_POSTS = 'LOADING_POSTS'
 export function loadingPosts () {
@@ -40,6 +40,19 @@ export function removePost (post) {
   }
 }
 
+export function fetchPosts () {
+  return async function (dispatch) {
+    dispatch(loadingPosts())
+    try {
+      const posts = await getPosts()
+      dispatch(addPost(posts))
+      dispatch(loadingPostsSuccess())
+    } catch (e) {
+      dispatch(loadingPostsFailure(e))
+    }
+  }
+}
+
 export function savePost (post) {
   return async function (dispatch) {
     dispatch(loadingPosts())
@@ -72,7 +85,6 @@ export default function posts (state = initialState, action) {
       return state.mergeIn(['status', 'errors'], true)
 
     case LOADING_POSTS_SUCCESS :
-      state = state.merge(action.posts)
       return state.mergeDeep({
         status: {
           isLoading: false,

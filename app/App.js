@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PrivateRoute from './config/PrivateRoute'
 
-import { NewPostContainer } from 'containers'
-import { Home } from 'components'
+import { NewPostContainer, HomeContainer } from 'containers'
 
 import { authenticateUser } from 'redux/modules/user'
 import { connect } from 'react-redux'
@@ -22,7 +21,7 @@ class App extends Component {
       <MuiThemeProvider>
         <Router>
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' component={HomeContainer} />
             <PrivateRoute
               allow={this.props.isEditor && this.props.isAuthenticated}
               isLoading={this.props.isAuthenticating}
