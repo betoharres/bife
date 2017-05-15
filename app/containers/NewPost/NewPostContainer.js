@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { NewPost } from 'components'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { initialize, destroy } from 'redux-form'
 
 import { generatePostKey } from 'api'
 import * as postsActionCreators from 'redux/modules/posts'
@@ -18,23 +17,26 @@ class NewPostContainer extends Component {
   }
 
   componentWillMount () {
-    this.setState({postId: generatePostKey()})
+    this.setState({
+      postId: generatePostKey()
+    })
   }
 
   handleSubmitPost (post) {
     this.setState({isSaved: true})
-    this.props.savePost({[this.state.postId]: post.toJS()})
+    this.props.savePost(post)
   }
 
   handleResetForm (reset) {
-    this.setState({postId: generatePostKey(), isSaved: false})
+    this.setState({postId: generatePostKey(),isSaved: false})
     reset()
   }
 
   render () {
     return (
       <NewPost postId={this.state.postId} isSaved={this.state.isSaved}
-        onResetForm={(cb) => this.handleResetForm(cb)} isLoading={this.props.isLoading}
+        onResetForm={(reset) => this.handleResetForm(reset)}
+        isLoading={this.props.isLoading}
         onSubmit={(post) => this.handleSubmitPost(post)} />
     )
   }

@@ -10,6 +10,5 @@ export function generatePostKey () {
 }
 
 export async function persistPost (post) {
-  const postId = Object.keys(post)[0]
-  await ref.child(`posts/${postId}`).set(post[postId])
+  await ref.child(`posts/${post.keySeq().first()}`).set(post.first().toJS())
 }
