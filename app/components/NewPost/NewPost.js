@@ -8,20 +8,17 @@ import { newPostContainer, fieldContainer, subContainerButton,
           paperContainer, fieldButtonContainer } from './styles.css'
 
 const validate = values => {
-  debugger
   const errors = {}
-  const postId = values.keySeq().first()
 
-  errors[postId] = {}
   if (!values.get('title')) {
-    errors[postId].title = 'Campo obrigatorio'
+    errors.title = 'Campo obrigatorio'
   } else if (values.get('title').length > 50) {
-    errors[postId].title = 'Deve conter menos de 50 caracteres'
+    errors.title = 'Deve conter menos de 50 caracteres'
   } else if (/[^a-zA-Z0-9\s]/g.test(values.get('title'))) {
-    errors[postId].title = 'Deve conter somente letras e numeros'
+    errors.title = 'Deve conter somente letras e numeros'
   }
   if (!values.get('content')) {
-    errors[postId].content = 'Campo obrigatorio'
+    errors.content = 'Campo obrigatorio'
   }
 
   return errors
