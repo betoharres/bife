@@ -2,26 +2,26 @@ import React from 'react'
 import { reduxForm, Field, FormSection } from 'redux-form/immutable'
 import { TextForm, ButtonForm } from 'components'
 import Paper from 'material-ui/Paper'
+import RaisedButton from 'material-ui/RaisedButton'
 
-import { newPostContainer, fieldContainer, paperContainer } from './styles.css'
+import { newPostContainer, fieldContainer, subContainerButton,
+          paperContainer, fieldButtonContainer } from './styles.css'
 
 const validate = values => {
+  debugger
   const errors = {}
   const postId = values.keySeq().first()
 
-  if (postId) {
-    errors[postId] = {}
-    if (!values.getIn([postId, 'title'])) {
-      errors[postId].title = 'Campo obrigatorio'
-    } else if (values.getIn([postId, 'title']).length > 50) {
-      errors[postId].title = 'Deve conter menos de 50 caracteres'
-    } else if (/[^a-zA-Z0-9\s]/g.test(values.getIn([postId, 'title']))) {
-      errors[postId].title = 'Deve conter somente letras e numeros'
-    }
-
-    if (!values.getIn([postId, 'content'])) {
-      errors[postId].content = 'Campo obrigatorio'
-    }
+  errors[postId] = {}
+  if (!values.get('title')) {
+    errors[postId].title = 'Campo obrigatorio'
+  } else if (values.get('title').length > 50) {
+    errors[postId].title = 'Deve conter menos de 50 caracteres'
+  } else if (/[^a-zA-Z0-9\s]/g.test(values.get('title'))) {
+    errors[postId].title = 'Deve conter somente letras e numeros'
+  }
+  if (!values.get('content')) {
+    errors[postId].content = 'Campo obrigatorio'
   }
 
   return errors
@@ -29,28 +29,41 @@ const validate = values => {
 
 function NewPost (props) {
 
+  let buttonText = ''
+  if (props.isLoading) {
+    buttonText = 'Carregando...'
+  } else if (props.isLoading === false && props.isSaved) {
+    buttonText = 'Atualizar'
+  } else {
+    buttonText = 'Enviar'
+  }
+
+  console.log(props)
   return (
     <div className={newPostContainer}>
       <Paper className={paperContainer}>
         <form onSubmit={props.handleSubmit}>
-          <FormSection name={props.postId}>
+          <div className={fieldContainer}>
+            <Field name='title' label='Titulo' isLoading={props.isLoading}
+              fullWidth={true} component={TextForm} />
+          </div>
 
-            <div className={fieldContainer}>
-              <Field name='title' label='Titulo'
-                fullWidth={true} component={TextForm} />
+          <div className={fieldContainer}>
+            <Field name='content' label='Conteudo' multiLine={true}
+              isLoading={props.isLoading} fullWidth={true} component={TextForm} />
+          </div>
+
+          <div className={fieldButtonContainer}>
+            <div className={subContainerButton}>
+              <ButtonForm label={buttonText} fullWidth={true}
+                disabled={props.pristine || props.isLoading} />
             </div>
-
-            <div className={fieldContainer}>
-              <Field name='content' label='Conteudo' multiLine={true}
-                fullWidth={true} component={TextForm} />
+            <div className={subContainerButton}>
+              <RaisedButton label={'Novo Post'} fullWidth={true}
+                onTouchTap={() => props.onResetForm(props.reset)}
+                disabled={props.pristine || props.isLoading} />
             </div>
-
-            <div className={fieldContainer}>
-              <ButtonForm label={'Enviar'} fullWidth={true}
-                disabled={props.pristine || props.submitting} />
-            </div>
-
-          </FormSection>
+          </div>
         </form>
       </Paper>
     </div>

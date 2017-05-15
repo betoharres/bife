@@ -19,10 +19,10 @@ class HomeContainer extends Component {
 }
 
 function mapStateToProps ({posts}) {
-  posts = posts.delete('status')
+  const onlyPosts = posts.delete('status')
   return {
-    isLoading: posts.get('isLoading'),
-    posts,
+    isLoading: posts.getIn(['status', 'isLoading']),
+    posts: onlyPosts,
   }
 }
 

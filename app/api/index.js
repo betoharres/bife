@@ -5,10 +5,11 @@ export async function getPosts () {
   return snapshot.val()
 }
 
-export function getPostKey () {
+export function generatePostKey () {
   return ref.child(`posts`).push().key
 }
 
 export async function persistPost (post) {
-  await ref.child(`posts`).set(post.toJS())
+  const postId = Object.keys(post)[0]
+  await ref.child(`posts/${postId}`).set(post[postId])
 }

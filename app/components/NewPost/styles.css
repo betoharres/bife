@@ -2,6 +2,15 @@
   align-items: center;
 }
 .fieldContainer {}
+.subContainerButton {
+  display: flex;
+  flex: 1;
+}
+.fieldButtonContainer {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
 .paperContainer {
   max-width: 100%;
   padding: 20px;

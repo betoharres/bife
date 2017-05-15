@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField'
 export default function TextForm (props) {
   return (
     <TextField
+      disabled={props.isLoading}
       hintText={props.label}
       fullWidth={props.fullWidth}
       multiLine={props.multiLine}
