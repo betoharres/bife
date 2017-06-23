@@ -1,0 +1,21 @@
+.container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.postContainer {
+  margin: 20px;
+  padding: 10px;
+  min-width: 80vw;
+  height: 75vh;
+}
+
+.postContainer iframe {
+  width: 80vw;
+  height: 71.5vh;
+}

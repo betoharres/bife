@@ -1,0 +1,7 @@
+export Home from './Home/Home'
+export NewPost from './NewPost/NewPost'
+export TextForm from './TextForm/TextForm'
+export ButtonForm from './ButtonForm/ButtonForm'
+export Loading from './Loading/Loading'
+export Modal from './Modal/Modal'
+export AutoCompleteForm from './AutoCompleteForm/AutoCompleteForm'
