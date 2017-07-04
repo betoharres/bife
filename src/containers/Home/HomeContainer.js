@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Home } from 'components'
+import { Home } from '../../components'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as postsActionCreators from 'redux/modules/posts'
+import * as postsActionCreators from '../../redux/modules/posts'
 
 class HomeContainer extends Component {
 

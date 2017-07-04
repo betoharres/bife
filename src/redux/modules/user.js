@@ -1,5 +1,5 @@
 import { Map } from 'immutable'
-import { authenticate } from 'auth'
+import { authenticate } from '../../auth'
 
 export const AUTH_USER = 'AUTH_USER'
 export const AUTH_USER_SUCCESS = 'AUTH_USER_SUCCESS'

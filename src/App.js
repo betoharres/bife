@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import PrivateRoute from './config/PrivateRoute'
 
-import { NewPostContainer, HomeContainer } from 'containers'
+import { NewPostContainer, HomeContainer } from './containers'
 
-import { authenticateUser } from 'redux/modules/user'
+import { authenticateUser } from './redux/modules/user'
 import { connect } from 'react-redux'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import * as styles from './styles.css'
 
 class App extends Component {
 

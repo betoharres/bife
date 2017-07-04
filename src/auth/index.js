@@ -1,5 +1,5 @@
 import cookies from 'browser-cookies'
-import { ref, firebaseAuth } from 'config/constants'
+import { ref, firebaseAuth } from '../config/constants'
 
 export async function fetchUser (uid) {
   const snapshot = await ref.child(`users/${uid}`).once('value')

@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import AutoComplete from 'material-ui/AutoComplete'
 
 export default function AutoCompleteForm (props) {
 

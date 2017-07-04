@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable'
-import { persistPost, getPosts } from 'api'
+import { persistPost, getPosts } from '../../api'
 
 export const LOADING_POSTS = 'LOADING_POSTS'
 export function loadingPosts () {

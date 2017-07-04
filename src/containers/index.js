@@ -1,3 +1,3 @@
-export NewPostContainer from './NewPost/NewPostContainer'
-export ModalContainer from './Modal/ModalContainer'
-export HomeContainer from './Home/HomeContainer'
+export { default as NewPostContainer } from './NewPost/NewPostContainer'
+export { default as ModalContainer } from './Modal/ModalContainer'
+export { default as HomeContainer } from './Home/HomeContainer'

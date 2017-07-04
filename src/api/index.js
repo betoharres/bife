@@ -1,4 +1,4 @@
-import { ref } from 'config/constants'
+import { ref } from '../config/constants'
 
 export async function getPosts () {
   const snapshot = await ref.child('posts').once('value')

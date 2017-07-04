@@ -1,11 +1,10 @@
 import React from 'react'
 import { reduxForm, Field, FormSection } from 'redux-form/immutable'
-import { TextForm, ButtonForm } from 'components'
+import { TextForm, ButtonForm } from '../../components'
 import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
 
-import { newPostContainer, fieldContainer, subContainerButton,
-          paperContainer, fieldButtonContainer } from './styles.css'
+import './styles.css'
 
 const validate = values => {
   const errors = {}
@@ -41,30 +40,30 @@ function NewPost (props) {
   }
 
   return (
-    <div className={newPostContainer}>
-      <Paper className={paperContainer}>
+    <div className='newPostContainer'>
+      <Paper className='paperContainer'>
         <form onSubmit={props.handleSubmit}>
-          <div className={fieldContainer}>
+          <div className='fieldContainer'>
             <Field name='title' label='Titulo' isLoading={props.isLoading}
               fullWidth={true} component={TextForm} />
           </div>
 
-          <div className={fieldContainer}>
+          <div className='fieldContainer'>
             <Field name='content' label='Conteudo' multiLine={true}
               isLoading={props.isLoading} fullWidth={true} component={TextForm} />
           </div>
 
-          <div className={fieldContainer}>
+          <div className='fieldContainer'>
             <Field name='type' label='Tipo' multiLine={true}
               isLoading={props.isLoading} fullWidth={true} component={TextForm} />
           </div>
 
-          <div className={fieldButtonContainer}>
-            <div className={subContainerButton}>
+          <div className='fieldButtonContainer'>
+            <div className='subContainerButton'>
               <ButtonForm label={buttonText} fullWidth={true}
                 disabled={props.pristine || props.isLoading} />
             </div>
-            <div className={subContainerButton}>
+            <div className='subContainerButton'>
               <RaisedButton label={'Novo Post'} fullWidth={true}
                 onTouchTap={() => props.onResetForm(props.reset)}
                 disabled={props.pristine || props.isLoading} />

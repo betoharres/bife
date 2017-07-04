@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Loading } from 'components'
+import { Loading } from '../components'
 import { Route } from 'react-router-dom'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

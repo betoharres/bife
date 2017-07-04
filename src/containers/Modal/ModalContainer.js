@@ -1,8 +1,8 @@
-import React, {Component, PropTypes} from 'react'
-import { Modal } from 'components'
+import React, {Component} from 'react'
+import { Modal } from '../../components'
 
 import { connect } from 'react-redux'
-import { closeModal } from 'redux/modules/modal'
+import { closeModal } from '../../redux/modules/modal'
 
 class ModalContainer extends Component {
 
