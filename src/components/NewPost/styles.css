@@ -4,6 +4,10 @@
 .fieldContainer {}
 .subContainerButton {
   display: flex;
+  flex: 3;
+}
+.newPostButton {
+  display: flex;
   flex: 1;
 }
 .fieldButtonContainer {

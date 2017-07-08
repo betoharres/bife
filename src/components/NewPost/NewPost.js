@@ -1,5 +1,5 @@
 import React from 'react'
-import { reduxForm, Field, FormSection } from 'redux-form/immutable'
+import { reduxForm, Field } from 'redux-form/immutable'
 import { TextForm, ButtonForm } from '../../components'
 import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -53,17 +53,12 @@ function NewPost (props) {
               isLoading={props.isLoading} fullWidth={true} component={TextForm} />
           </div>
 
-          <div className='fieldContainer'>
-            <Field name='type' label='Tipo' multiLine={true}
-              isLoading={props.isLoading} fullWidth={true} component={TextForm} />
-          </div>
-
           <div className='fieldButtonContainer'>
             <div className='subContainerButton'>
               <ButtonForm label={buttonText} fullWidth={true}
                 disabled={props.pristine || props.isLoading} />
             </div>
-            <div className='subContainerButton'>
+            <div className='newPostButton'>
               <RaisedButton label={'Novo Post'} fullWidth={true}
                 onTouchTap={() => props.onResetForm(props.reset)}
                 disabled={props.pristine || props.isLoading} />

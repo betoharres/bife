@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { NewPost } from '../../components'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { initialize, destroy } from 'redux-form'
 
 import { generatePostKey } from '../../api'
 import * as postsActionCreators from '../../redux/modules/posts'

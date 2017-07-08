@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { Home } from '../../components'
+import { NewPostContainer } from '../../containers'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postsActionCreators from '../../redux/modules/posts'
+import { openModal } from '../../redux/modules/modal'
 
 class HomeContainer extends Component {
+
+  handleOpenModal () {
+    this.props.openModal(NewPostContainer)
+  }
 
   async componentDidMount () {
     await this.props.fetchPosts()
@@ -13,7 +19,8 @@ class HomeContainer extends Component {
 
   render () {
     return (
-      <Home posts={this.props.posts} isLoading={this.props.isLoading} />
+      <Home posts={this.props.posts} isLoading={this.props.isLoading}
+            openModal={() => this.handleOpenModal()}/>
     )
   }
 }
@@ -27,7 +34,7 @@ function mapStateToProps ({posts}) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators(postsActionCreators, dispatch)
+  return bindActionCreators({...postsActionCreators, openModal}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)

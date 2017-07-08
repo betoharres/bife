@@ -3,13 +3,14 @@ import AutoComplete from 'material-ui/AutoComplete'
 
 export default function AutoCompleteForm (props) {
 
-  const templates = ['youtube', 'xvideos', 'pornhub', 'img', 'redtube', 'youjizz']
+  const templates = {'youtube': '', 'img': ''}
 
   return (
     <AutoComplete
-      floatingLabelText="Type 'r', case insensitive"
+      fullWidth={true}
+      floatingLabelText="autocomplete"
       filter={AutoComplete.caseInsensitiveFilter}
-      dataSource={templates}
+      dataSource={Object.keys(templates)}
     />
   )
 

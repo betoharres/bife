@@ -1,10 +1,12 @@
+import React from 'react'
+
 export const OPEN_MODAL = 'OPEN_MODAL'
 export const CLOSE_MODAL = 'CLOSE_MODAL'
 
-export function openModal (component) {
+export function openModal (Component) {
   return {
     type: OPEN_MODAL,
-    component,
+    Component,
   }
 }
 
@@ -15,7 +17,7 @@ export function closeModal () {
 }
 
 const initialState = {
-  component: null,
+  Component: () => <span />,
   isOpen: false,
 }
 
@@ -23,7 +25,7 @@ export default function modal (state = initialState, action) {
   switch (action.type) {
     case OPEN_MODAL :
       return {
-        component: action.component,
+        Component: action.Component,
         isOpen: true,
       }
 
