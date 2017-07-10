@@ -21,10 +21,6 @@ const validate = values => {
     errors.content = 'Campo obrigatorio'
   }
 
-  if (!values.get('type')) {
-    errors.content = 'Campo obrigatorio'
-  }
-
   return errors
 }
 
@@ -36,7 +32,7 @@ function NewPost (props) {
   } else if (props.isLoading === false && props.isSaved) {
     buttonText = 'Atualizar'
   } else {
-    buttonText = 'Enviar'
+    buttonText = 'Criar Novo Post'
   }
 
   return (
@@ -59,7 +55,7 @@ function NewPost (props) {
                 disabled={props.pristine || props.isLoading} />
             </div>
             <div className='newPostButton'>
-              <RaisedButton label={'Novo Post'} fullWidth={true}
+              <RaisedButton label={'Limpar'} fullWidth={true}
                 onTouchTap={() => props.onResetForm(props.reset)}
                 disabled={props.pristine || props.isLoading} />
             </div>
