@@ -21,6 +21,7 @@ class NewPostContainer extends Component {
   }
 
   handleSubmitPost (post) {
+    post = post.merge({timestamp: Date.now()})
     this.setState({isSaved: true})
     this.props.savePost({[this.state.postId]: post.toJS()})
   }
