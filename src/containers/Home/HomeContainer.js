@@ -19,16 +19,18 @@ class HomeContainer extends Component {
 
   render () {
     return (
-      <Home posts={this.props.posts} isLoading={this.props.isLoading}
-            openModal={() => this.handleOpenModal()}/>
+      <Home posts={this.props.posts} isEditor={this.props.isEditor}
+        isLoading={this.props.isLoading}
+        openModal={() => this.handleOpenModal()} />
     )
   }
 }
 
-function mapStateToProps ({posts}) {
+function mapStateToProps ({user, posts}) {
   const onlyPosts = posts.delete('status')
   return {
     isLoading: posts.getIn(['status', 'isLoading']),
+    isEditor: user.get('isEditor'),
     posts: onlyPosts,
   }
 }

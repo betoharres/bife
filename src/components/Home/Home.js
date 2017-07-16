@@ -9,10 +9,12 @@ import'./styles.css'
 export default function Home (props) {
   return (
     <div>
-      <FloatingActionButton onClick={props.openModal}
-        style={{right: 30, bottom: 50, position: 'fixed'}}>
-        <ContentAdd />
-      </FloatingActionButton>
+      {props.isEditor ?
+        <FloatingActionButton onClick={props.openModal}
+          style={{right: 30, bottom: 50, position: 'fixed'}}>
+          <ContentAdd />
+        </FloatingActionButton>
+      : null}
       <div className='container'>
         {props.isLoading
           ? <Loading />
