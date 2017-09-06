@@ -6,7 +6,6 @@ export async function getPosts () {
 }
 
 export async function deletePost (postId) {
-  console.log(postId)
   await ref.child(`posts/${postId}`).remove()
 }
 
