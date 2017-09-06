@@ -16,8 +16,10 @@ export default function Home (props) {
   return (
     <div>
       {props.isEditor ?
-        <FloatingActionButton onClick={() => props.openModal(NewPostContainer)}
-          style={{right: 30, bottom: 50, position: 'fixed'}}>
+          <FloatingActionButton
+            secondary={true}
+            onClick={() => props.openModal(NewPostContainer)}
+            style={{right: 30, bottom: 50, position: 'fixed'}}>
           <ContentAdd />
         </FloatingActionButton>
       : null}
@@ -33,7 +35,10 @@ export default function Home (props) {
                     <span className='actionBtnTitle'>
                       <FlatButton label={'Editar'} icon={<EditIcon />}
                         style={{color: amber500}} />
-                      <FlatButton label={'Deletar'} icon={<TrashIcon/>}
+                      <FlatButton
+                        label={'Deletar'}
+                        icon={<TrashIcon />}
+                        onTouchTap={() => props.onDeletePost(key)}
                         style={{color: grey50}} />
                     </span> : null }
                 </span>

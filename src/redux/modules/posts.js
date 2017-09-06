@@ -1,5 +1,5 @@
 import { fromJS } from 'immutable'
-import { persistPost, getPosts } from '../../api'
+import { persistPost, getPosts, deletePost } from '../../api'
 
 export const LOADING_POSTS = 'LOADING_POSTS'
 export function loadingPosts () {
@@ -17,10 +17,10 @@ export function loadingPostsSuccess (posts) {
 }
 
 export const LOADING_POSTS_FAILURE = 'LOADING_POSTS_FAILURE'
-export function loadingPostsFailure (errors) {
+export function loadingPostsFailure (error) {
   return {
     type: LOADING_POSTS_FAILURE,
-    errors,
+    error,
   }
 }
 
@@ -33,10 +33,10 @@ export function addPost (post) {
 }
 
 export const REMOVE_POST = 'REMOVE_POST'
-export function removePost (post) {
+export function removePost (postId) {
   return {
     type: REMOVE_POST,
-    post,
+    postId,
   }
 }
 
@@ -58,10 +58,23 @@ export function savePost (post) {
     dispatch(loadingPosts())
     try {
       dispatch(addPost(post))
-      await persistPost(post)
+      await persistPost(post.keySeq().first())
       dispatch(loadingPostsSuccess())
     } catch (e) {
       removePost(post)
+      dispatch(loadingPostsFailure(e))
+    }
+  }
+}
+
+export function deletePostRequest (postId) {
+  return async function (dispatch) {
+    dispatch(loadingPosts())
+    try{
+      await deletePost(postId)
+      dispatch(removePost(postId))
+      dispatch(loadingPostsSuccess())
+    } catch (e) {
       dispatch(loadingPostsFailure(e))
     }
   }
@@ -82,7 +95,12 @@ export default function posts (state = initialState, action) {
       return state.mergeIn(['status', 'isLoading'], true)
 
     case LOADING_POSTS_FAILURE :
-      return state.mergeIn(['status', 'errors'], true)
+      return state.mergeDeep({
+        status: {
+          isLoading: false,
+          errors: action.error,
+        }
+      })
 
     case LOADING_POSTS_SUCCESS :
       return state.mergeDeep({
@@ -97,7 +115,7 @@ export default function posts (state = initialState, action) {
       return state.merge(action.post)
 
     case REMOVE_POST :
-      return state.delete(action.post.keySeq().first())
+      return state.delete(action.postId)
 
     default :
       return state

@@ -5,6 +5,11 @@ export async function getPosts () {
   return snapshot.val()
 }
 
+export async function deletePost (postId) {
+  console.log(postId)
+  await ref.child(`posts/${postId}`).remove()
+}
+
 export function generatePostKey () {
   return ref.child(`posts`).push().key
 }

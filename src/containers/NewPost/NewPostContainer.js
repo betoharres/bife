@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import { generatePostKey } from '../../api'
 import * as postsActionCreators from '../../redux/modules/posts'
+import * as modalActionCreators from '../../redux/modules/modal'
 
 class NewPostContainer extends Component {
 
@@ -24,6 +25,7 @@ class NewPostContainer extends Component {
     post = post.merge({timestamp: Date.now()})
     this.setState({isSaved: true})
     this.props.savePost({[this.state.postId]: post.toJS()})
+    this.props.closeModal()
   }
 
   handleResetForm (reset) {
@@ -47,6 +49,8 @@ function mapStateToProps ({posts}) {
 }
 
 function mapDispatchToPros (dispatch) {
-  return bindActionCreators(postsActionCreators, dispatch)
+  return bindActionCreators({
+    ...modalActionCreators,
+    ...postsActionCreators}, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToPros)(NewPostContainer)
