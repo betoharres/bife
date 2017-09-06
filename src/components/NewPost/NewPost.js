@@ -11,7 +11,7 @@ const validate = values => {
 
   if (!values.get('title')) {
     errors.title = 'Campo obrigatorio'
-  } else if (values.get('title').length > 50) {
+  } else if (values.get('title').length > 55) {
     errors.title = 'Deve conter menos de 50 caracteres'
   } else if (/[^a-zA-Z0-9\s]/g.test(values.get('title'))) {
     errors.title = 'Deve conter somente letras e numeros'

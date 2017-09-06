@@ -9,8 +9,8 @@ import { openModal } from '../../redux/modules/modal'
 
 class HomeContainer extends Component {
 
-  handleOpenModal () {
-    this.props.openModal(NewPostContainer)
+  handleOpenModal (component) {
+    this.props.openModal(component)
   }
 
   async componentDidMount () {
@@ -21,7 +21,7 @@ class HomeContainer extends Component {
     return (
       <Home posts={this.props.posts} isEditor={this.props.isEditor}
         isLoading={this.props.isLoading}
-        openModal={() => this.handleOpenModal()} />
+        openModal={this.handleOpenModal} />
     )
   }
 }

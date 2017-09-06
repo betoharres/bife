@@ -11,6 +11,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     } else {
       return <Route component={() => <div>Pagina nao encontrada</div>} />
     }
-  }}/>
+  }} />
 }
 export default PrivateRoute
