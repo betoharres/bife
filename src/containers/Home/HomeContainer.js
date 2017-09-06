@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Home } from '../../components'
-import { NewPostContainer } from '../../containers'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
