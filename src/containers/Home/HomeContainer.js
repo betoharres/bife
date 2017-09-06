@@ -18,9 +18,10 @@ class HomeContainer extends Component {
 
   render () {
     return (
-      <Home posts={this.props.posts} isEditor={this.props.isEditor}
+      <Home posts={this.props.posts}
+        isEditor={this.props.isEditor}
         isLoading={this.props.isLoading}
-        openModal={this.handleOpenModal} />
+        openModal={(component) => this.handleOpenModal(component)} />
     )
   }
 }
